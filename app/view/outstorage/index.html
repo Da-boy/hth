@@ -26,7 +26,7 @@
                 <a href="{:url('Outstorage/index')}"><i class="fa-home"></i>首页</a>
             </li>
             <li>
-                <a href="">基本设置</a>
+                <a href="">仓库作业</a>
              </li>
             <li class="active">
                 <strong>出库管理</strong>
@@ -58,9 +58,9 @@
 
                     <div class="btn-group dropdown-btn-group pull-right">
                         
-                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">过滤某列数据
+<!--                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">过滤某列数据
                             <span class="caret"></span>
-                        </button>
+                        </button>-->
                         <ul class="dropdown-menu">
                             <li class="checkbox-row">
                                 <div class="cbr-replaced cbr-checked">
@@ -94,7 +94,7 @@
                                 <input type="text" class="form-control" placeholder="出库编号" name="sn" value="{$Request.get.sn}">
                             </span>
 
-                            <span style="margin-left: 15px;">
+<!--                            <span style="margin-left: 15px;">
                                 <label class="control-label">出库类型</label>
                                 <select class="form-control" name="type">
                                     <option value="" 
@@ -107,7 +107,7 @@
                                         {eq name="Request.get.type" value="销售退货"} selected="selected" {/eq}
                                     >销售退货</option>
                                 </select>   
-                            </span>
+                            </span>-->
 
                             <span style="margin-left: 15px;">
                                 <button class="btn btn-default btn-primary" type="submit" style="margin-top:10px;">
@@ -130,8 +130,8 @@
                             aoColumns: [
                                 {bSortable: false},
                                 null,
-                                null,
-                                null,
+//                                null,
+//                                null,
                                 null,
                                 null,
                                 {bSortable: false}
@@ -174,8 +174,8 @@
                                 </th>
                                 <th>编号</th>
                                 <th>制单者</th>
-                                <th>供应商</th>
-                                <th>出库类型</th>
+<!--                                <th>供应商</th>-->
+<!--                                <th>出库类型</th>-->
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -190,8 +190,8 @@
                                 </td>
                                 <td> {$vo.sn} </td>
                                 <td> {$vo.author} </td>
-                                <td> {$vo.supplier} </td>
-                                <td> {$vo.type} </td>
+<!--                                <td> {$vo.supplier} </td>-->
+<!--                                <td> {$vo.type} </td>-->
                                 <td> {:date('Y-m-d H:i:s',$vo->add_time)} </td>
                                 <td>
 <!--                                     <a href="javascript:;" 

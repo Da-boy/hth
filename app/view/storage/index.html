@@ -102,10 +102,10 @@
                                 <input type="text" class="form-control" placeholder="联系人" name="contact" value="{$Request.get.contact}">
                             </span>
 
-                            <span style="margin-left: 15px;">
+<!--                            <span style="margin-left: 15px;">
                                 <label class="control-label">手机号</label>      
                                 <input type="text" class="form-control" placeholder="手机号" name="phone" value="{$Request.get.phone}">
-                            </span>
+                            </span>-->
 
                             <span style="margin-left: 15px;">
                                 <label class="control-label">仓库状态</label>
@@ -145,7 +145,7 @@
                                 null,
                                 null,
                                 null,
-                                null,
+//                                null,
                                 null,
                                 null,
                                 null,
@@ -191,7 +191,7 @@
                                 <th>仓库编号</th>
                                 <th>仓库名称</th>
                                 <th>联系人</th>
-                                <th>电话</th>
+<!--                                <th>电话</th>-->
                                 <th>状态</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
@@ -209,7 +209,7 @@
                                 <td> {$user.sn} </td>
                                 <td> {$user.name} </td>
                                 <td> {$user.contact} </td>
-                                <td> {$user.phone} </td>
+<!--                                <td> {$user.phone} </td>-->
                                 <td> {$user.status==0?'正常':'废弃'} </td>
                                 <td> {:date('Y-m-d H:i:s',$user->add_time)} </td>
                                 <td>

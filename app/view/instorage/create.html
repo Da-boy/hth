@@ -1,116 +1,93 @@
 
-
-
 <form class="validate add-form" novalidate="novalidate">
 
-	<div class="row">	
-		<div class="col-md-12">
-			<div class="form-group">
-				<label for="field-2" class="control-label">订单号</label>
-				<input type="text" class="form-control" name="sn" placeholder="订单号" value="SN{:date('Ymdhis',time())}{:rand(10000,99999)}">
-			</div>	
-		</div>
-        <div class="col-md-8"> </div>
-	</div>
-
-    <div class="row">   
-        <div class="col-md-4">
+    <div class="row">	
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="field-2" class="control-label">订单号</label>
+                <input type="text" class="form-control" name="sn" placeholder="订单号" value="SN{:date('Ymdhis',time())}{:rand(100,999)}">
+            </div>	
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="field-2" class="control-label">操作员</label>
                 <input type="text" class="form-control" name="author" placeholder="操作员" value="{$my_info->truename}">
             </div>  
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">入库类型</label>
-                <select class="form-control" name="type">
-                    <option value="采购入库" >采购入库</option>
-                    <option value="销售退货" >销售退货</option>
-                </select>  
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">供应商</label>
-                <select class="form-control" name="supplier">
-                        <option value="默认" >默认</option>
-                        {volist name='supplier' id='vo'}
-                        <option value="{$vo.name}">{$vo.name}</option>
-                        {/volist}
-                </select>  
-            </div>
-        </div>        
     </div>
-
-    <div class="row">   
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="field-2" class="control-label">车牌</label>
-                <input type="text" class="form-control" name="car_no" placeholder="车牌" value="">
-            </div>  
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">载货清单号</label>
-                <input type="text" class="form-control" name="detailed_no" placeholder="载货清单号" value="">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">板序号</label>
-                <input type="text" class="form-control" name="ban_no" placeholder="板序号" value="">
-            </div>
-        </div>        
-    </div>
-
 
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
             <tr role="row">
-                <th></th>
-                <th class="sorting_disabled" rowspan="1" colspan="1">
+                <th style="    width: 60px;"></th>
+                <th class="sorting_disabled" rowspan="1" colspan="1"  style="    width: 140px;">
                     产品名称
                 </th>
                 <th class="sorting_disabled" rowspan="1" colspan="1">
+                    规格
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 80px;">
+                    单位
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 80px;">
                     入库数
                 </th>
-                <th></th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" >
+                    单价
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1">
+                    生产日期
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">
+                    保质期
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 250px;">
+                    库房及货架
+                </th>
+                <th style="    width: 60px;"></th>
             </tr>
         </thead>
         <tbody>
+       
             <tr role="row" class="odd order-list">
+                     {volist name='product1' id='vo'}
                 <td>
                     <a href="javascript:void(0);" onclick="add_list(this)"> [ + ] </a> 
                 </td>
+                 
                 <td> 
-                    <select name="product[]" class="form-control">
-                        {volist name='product' id='vo'}
-                        <option value="{$vo.id}">{$vo.name}</option>
-                        {/volist}
+                    <select name="product[]" class="form-control">               
+                        <option value="{$vo.id}">{$vo.name}</option>   
                     </select> 
                 </td>
+                <td><input type="text" class="form-control"  name="spec" value="{$vo.spec}"></td>
+                <td><input type="text" class="form-control" name="unit"></td>
                 <td><input type="text" class="form-control" value="" name="num[]"></td>
+                <td><input type="text" class="form-control" name="price"></td>
+                <td><input type="date" class="form-control" name="sctime"></td>
+                <td><input type="text" class="form-control" name="keeptime"></td>
+                <td><input type="text" class="form-control" name="local"></td>
+                
                 <td>
-                	<a class="delete" href="javascript:void(0)" onclick="del_list(this)"> [ - ] </a>
+                    <a class="delete" href="javascript:void(0)" onclick="del_list(this)"> [ - ] </a>
                 </td>
+                 {/volist}
             </tr>
 
         </tbody>
     </table>
 
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group no-margin">
+                <label for="field-7" class="control-label">备注</label>
+                <textarea class="form-control autogrow" name="desc" placeholder="备注" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
+            </div>	
+        </div>
+    </div>
 
 
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group no-margin">
-				<label for="field-7" class="control-label">备注</label>
-				<textarea class="form-control autogrow" name="desc" placeholder="备注" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
-			</div>	
-		</div>
-	</div>
-
-	
 </form>
 
 
@@ -120,13 +97,13 @@
 
 <script>
 
-function add_list(obj){
-    // $(obj).parent().parent().hide();
-    $(obj).parent().parent().clone().appendTo( $(obj).parent().parent().parent() );
-}
+    function add_list(obj) {
+        // $(obj).parent().parent().hide();
+        $(obj).parent().parent().clone().appendTo($(obj).parent().parent().parent());
+    }
 
-function del_list(obj){
-    $(obj).parent().parent().remove();
-}
+    function del_list(obj) {
+        $(obj).parent().parent().remove();
+    }
 
 </script>

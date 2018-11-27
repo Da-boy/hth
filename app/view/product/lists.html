@@ -26,7 +26,7 @@
                 <a href="{:url('Product/index')}"><i class="fa-home"></i>首页</a>
             </li>
             <li>
-                <a href="">基本设置</a>
+                <a href="">仓库作业</a>
              </li>
             <li class="active">
                 <strong>产品管理</strong>
@@ -58,9 +58,9 @@
 
                     <div class="btn-group dropdown-btn-group pull-right">
                         
-                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">过滤某列数据
+<!--                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">过滤某列数据
                             <span class="caret"></span>
-                        </button>
+                        </button>-->
                         <ul class="dropdown-menu">
                             <li class="checkbox-row">
                                 <div class="cbr-replaced cbr-checked">
@@ -97,7 +97,7 @@
                                 <input type="text" class="form-control" placeholder="产品编号" name="sn" value="{$Request.get.sn}">
                             </span>
 
-                            <span style="margin-left: 15px;">
+<!--                            <span style="margin-left: 15px;">
                                 <label class="control-label">产品状态</label>
                                 <select class="form-control" name="status">
                                     <option value="" 
@@ -110,7 +110,7 @@
                                         {eq name="Request.get.status" value="1"} selected="selected" {/eq}
                                     >废弃</option>
                                 </select>   
-                            </span>
+                            </span>-->
 
                             <span style="margin-left: 15px;">
                                 <button class="btn btn-default btn-primary" type="submit" style="margin-top:10px;">
@@ -138,11 +138,11 @@
                                 null,
                                 null,
                                 null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
+//                                null,
+//                                null,
+//                                null,
+//                                null,
+                                null
                             ],
                         });
                         
@@ -183,14 +183,14 @@
                                 <th>ID</th>
                                 <th>编号</th>
                                 <th>产品名称</th>
-                                <th>类别</th>
+<!--                                <th>类别</th>-->
                                 <th>单位</th>
                                 <th>价格</th>
                                 <th>数量</th>
                                 <th>仓库</th>
-                                <th>供应商</th>
-                                <th>客户</th>
-                                <th>状态</th>
+<!--                                <th>供应商</th>
+                                <th>客户</th>-->
+<!--                                <th>状态</th>-->
                             </tr>
                         </thead>
                         
@@ -204,14 +204,14 @@
                                 <td> {$user.id} </td>
                                 <td> {$user.sn} </td>
                                 <td> {$user.name} </td>
-                                <td> {$user.category} </td>
+<!--                                <td> {$user.category} </td>-->
                                 <td> {$user.unit} </td>
                                 <td> {$user.price} </td>
                                 <td> {$user.num} </td>
                                 <td> {$user.storage} </td>
-                                <td> {$user.supplier} </td>
-                                <td> {$user.customer} </td>
-                                <td> {$user.status==0?'正常':'废弃'} </td>
+<!--                                <td> {$user.supplier} </td>
+                                <td> {$user.customer} </td>-->
+<!--                                <td> {$user.status==0?'正常':'废弃'} </td>-->
                             </tr>
                         {/volist}
 

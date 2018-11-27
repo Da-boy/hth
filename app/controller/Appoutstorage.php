@@ -1,13 +1,14 @@
 <?php
 namespace app\controller;
-use app\service\InstorageService,
+use app\service\OutstorageService,
     app\model\Product,
+    app\model\Supplier,
     app\model\Order;
 
-class Instorage extends Base
+class Appoutstorage extends Base
 {
     protected $service;
-    public function __construct(InstorageService $service)
+    public function __construct(OutstorageService $service)
     {
         parent::__construct();
         $this->service = $service;
@@ -19,19 +20,11 @@ class Instorage extends Base
         return view();
     }
 
-    public function create($id)
-    {
-
-//            'product'    =>  Product::all(  [ 'status' => 0 ] ),        
-             $product1     =  Product::get($id);
-        return view();
-    }
-    
-    public function lotscreate()
+    public function create()
     {
         $this->assign([
             'product'    =>  Product::all(  [ 'status' => 0 ] ),
-//            'supplier'   =>  Supplier::all(  [ 'status' => 0 ] ),
+            'supplier'   =>  Supplier::all(  [ 'status' => 0 ] ),
         ]);
         return view();
     }
@@ -39,10 +32,7 @@ class Instorage extends Base
     public function show($id)
     {
         $this->assign([
-            // 'product'    =>  Product::all(  [ 'status' => 0 ] ),
-            // 'supplier'   =>  Supplier::all(  [ 'status' => 0 ] ),
             'info'       =>  Order::get(['id'=>$id]),
-//            'info1'  => $this->service->getOrder($id),
             'list'  => $this->service->getAllList($id)
         ]);
         return view();

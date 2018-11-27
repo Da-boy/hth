@@ -26,10 +26,10 @@
                 <a href="{:url('Goodtop/index')}"><i class="fa-home"></i>首页</a>
             </li>
             <li>
-                <a href="">基本设置</a>
+                <a href="">仓库作业</a>
              </li>
             <li class="active">
-                <strong>货物上架</strong>
+                <strong>盘点管理</strong>
             </li>
         </ol>
                     
@@ -48,12 +48,12 @@
             <!-- Removing search and results count filter -->
             <div class="panel panel-default">
                 <div class="panel-heading btn-toolbar">
-                    <!-- <h3 class="panel-title">员工列表</h3> -->
-<!--                     <div class="btn-group focus-btn-group">
+<!--                     <h3 class="panel-title">员工列表</h3> -->
+                     <div class="btn-group focus-btn-group">
                         <button class="btn btn-default btn-primary" onclick="showAjaxModal();">
                             <span class="fa-plus"></span> 添 加
                         </button>
-                    </div> -->
+                    </div> 
 
                     <div class="btn-group dropdown-btn-group pull-right">
                         
@@ -85,18 +85,19 @@
                     <!-- searach -->
                     <div class="btn-toolbar">
 
-                        <form class="form-inline" style="margin-bottom:15px;" class="search-tool">
+                        <form class="form-inline search-tool" style="margin-bottom:15px;">
+                            <span style="margin-left: 15px;">
+                                <label class="control-label">盘点单号</label>      
+                                <input type="text" class="form-control" placeholder="盘点单号" name="sn" value="{$Request.get.sn}">
+                            </span>
                             <span>
-                                <label class="control-label">产品名称</label>   
-                                <input type="text" class="form-control" placeholder="产品名称" name="name" value="{$Request.get.name}"> 
+                                <label class="control-label">创建人</label>   
+                                <input type="text" class="form-control" placeholder="创建人" name="name" value="{$Request.get.name}"> 
                             </span>
                             
-                            <span style="margin-left: 15px;">
-                                <label class="control-label">产品编号</label>      
-                                <input type="text" class="form-control" placeholder="产品编号" name="sn" value="{$Request.get.sn}">
-                            </span>
+                            
 
-                            <span style="margin-left: 15px;">
+<!--                            <span style="margin-left: 15px;">
                                 <label class="control-label">产品状态</label>
                                 <select class="form-control" name="status">
                                     <option value="" 
@@ -109,7 +110,7 @@
                                         {eq name="Request.get.status" value="1"} selected="selected" {/eq}
                                     >废弃</option>
                                 </select>   
-                            </span>
+                            </span>-->
 
                             <span style="margin-left: 15px;">
                                 <button class="btn btn-default btn-primary" type="submit" style="margin-top:10px;">
@@ -132,13 +133,13 @@
                             aoColumns: [
                                 // {bSortable: false},
                                 null,
+//                                null,
                                 null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
+//                                null,
+//                                null,
+//                                null,
+//                                null,
+//                                null,
                                 null,
                                 null,
                                 {bSortable: false}
@@ -178,17 +179,17 @@
                             <tr>
                                 <!-- <th class="no-sorting"><input type="checkbox" class="cbr"></th> -->
                                 <th>ID</th>
-                                <th>编号</th>
-                                <th>产品名称</th>
-                                <th>类别</th>
-                                <th>单位</th>
-                                <th>价格</th>
-                                <th>仓库</th>
-                                <th>库位</th>
-                                <th>供应商</th>
-                                <th>客户</th>
-                                <th>已上架</th>
-                                <th>未上架</th>
+<!--                                <th>编号</th>-->
+                                <th>盘点单号</th>
+<!--                                <th>类别</th>-->
+<!--                                <th>单位</th>
+                                <th>价格</th>-->
+<!--                                <th>入库数</th>
+                                <th>出库数</th>
+                                <th>剩余数</th>-->
+                                <th>创建时间</th>
+                                <th>创建人</th>
+<!--                                <th>库房及货架</th>-->
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -201,22 +202,25 @@
                                 <!-- <td><input type="checkbox" class="cbr"></td> -->
                                 <td> {$vo.id} </td>
                                 <td> {$vo.sn} </td>
-                                <td> {$vo.name} </td>
-                                <td> {$vo.category} </td>
-                                <td> {$vo.unit} </td>
+<!--                                <td> {$vo.name} </td>-->
+<!--                                <td> {$vo.category} </td>-->
+<!--                                <td> {$vo.unit} </td>
                                 <td> {$vo.price} </td>
-                                <td> {$vo.storage} </td>
-                                <td> {$vo.location} </td>
-                                <td> {$vo.supplier} </td>
-                                <td> {$vo.customer} </td>
-                                <td> {$vo.findGoodup.num} </td>
-                                <td> {$vo.num} </td>
+                                <td>21</td>
+                                <td>19</td>
+                                <td>2 </td>-->
+                                <td> 2018.09.26</td>
+                                <td> 王朝</td>
+<!--                                <td> 1号食品库8号货架上 </td>-->
                                 <!-- <td> {$vo.status==0?'正常':'废弃'} </td> -->
                                 <td>
                                     <a href="javascript:;" 
                                         class="btn btn-secondary btn-sm btn-icon icon-left" 
                                         onclick="editAjaxModal('{:url('/Goodtop/edit/id/'.$vo->id)}')" >
-                                        上架
+                                        查看
+                                    </a>
+                                    <a class="btn btn-secondary btn-sm btn-icon icon-left" >
+                                        打印
                                     </a>
 <!--                                     
                                     <a ref="javascript:;" class="btn btn-danger btn-sm btn-icon icon-left" onclick="del('{$vo.id}')">
@@ -253,11 +257,56 @@
                 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">添加产品</h4>
+                    <h4 class="modal-title">添加盘点单</h4>
                 </div>
                 
                 <div class="modal-body">
-                    Content is loading...
+                    <div class="row">	
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">盘点单号</label>
+
+                                <input type="text" class="form-control"  placeholder="产品编号" value="sn6876876876786">
+                            </div>	
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">创建人</label>
+
+                                <input type="text" class="form-control"  value="李鑫克">
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="row">	
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="data1" class="control-label">一个月内</label>
+
+                                <input type="radio" class="form-control"   id="data1" name="data" style="width: 20px; float: left;margin: 0;height: 20px;margin-right: 15px;">
+                            </div>	
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="data2" class="control-label">三个月内</label>
+
+                                <input type="radio" class="form-control"  id="data2" name="data" style="width: 20px; float: left;margin: 0;height: 20px;margin-right: 15px;">
+                            </div>	
+                        </div>
+                           <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="data3" class="control-label">六个月内</label>
+
+                                <input type="radio" class="form-control"   id="data3" name="data" style="width: 20px; float: left;margin: 0;height: 20px;margin-right: 15px;">
+                            </div>	
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="data4" class="control-label">一年内</label>
+
+                                <input type="radio" class="form-control"   id="data4" name="data" style="width: 20px; float: left;margin: 0;height: 20px;margin-right: 15px;">
+                            </div>	
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="modal-footer">
@@ -275,7 +324,7 @@
                 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">编辑产品</h4>
+                    <h4 class="modal-title">盘点单详情</h4>
                 </div>
                 
                 <div class="modal-body">
@@ -291,7 +340,17 @@
     </div>    
 
 <script type="text/javascript">
-
+    function showAjaxModal(){
+        jQuery('#modal-add').modal('show', {backdrop: 'static'});
+        
+        jQuery.ajax({
+            url: "{:url('goodtop/create')}",
+            success: function(response)
+            {
+                jQuery('#modal-add .modal-body').html(response);
+            }
+        });
+    }
     //edit
     function editAjaxModal(url){
         jQuery('#modal-edit').modal('show', {backdrop: 'static'});

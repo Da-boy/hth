@@ -72,7 +72,7 @@ if( isset($_POST['host']) ){
 		</tr>
 		<tr>
 			<td>数据库</td>
-			<td><input type="text" value="db" name="db"></td>
+			<td><input type="text" value="wms" name="db"></td>
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align:center;">

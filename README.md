@@ -1,10 +1,8 @@
-# xenon-wms
+# hth-wms
 
 仓库管理系统
 
-## 在线地址 
 
-http://bool.yk.0zj.pw/index.php
 
 类型| 账号 | 密码
 ---|---|---
@@ -17,9 +15,6 @@ http://bool.yk.0zj.pw/index.php
 	
 	localhost/install.php
 
-## 安装框架核心 vendor (可以跳过)
-
-	composer install
 
 
 ## css js下载
@@ -27,11 +22,7 @@ http://bool.yk.0zj.pw/index.php
 https://share.weiyun.com/2759bf54943180687fe63cb9a28d98f7
 
 
-## qq群：484043598
 
-<div  align="center">    
-  <img src="./demo/alipay.png" width = "450" alt="支付宝" align=center />
-</div>
 
 
 ## 演示

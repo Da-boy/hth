@@ -1,0 +1,91 @@
+
+<style>
+    .form-lots{
+            margin-bottom: 20px;
+    }
+    .form-lots .form-control{
+        display: none;
+    } 
+    .form-lots .control-label{
+            font-size: 14px;
+            padding: 6px 12px;
+            color: white;
+            background-color: #68b828;
+            width: 100px;
+            text-align: center;
+            border-radius: 100px;
+    }
+</style>
+
+<form class="validate add-form" novalidate="novalidate">
+    
+    
+    <div class="form-lots">
+            <span>
+                <label class="control-label" for="lots-excel">添加文件</label>      
+                <input type="file" class="form-control" placeholder="文件" id="lots-excel">
+            </span>
+        <a href="/wms/index.php/Order/down.html" style="margin-left:20px;">下载样本</a>
+    </div>
+    
+    
+    <div class="row">	
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="field-2" class="control-label">订单号</label>
+                <input type="text" class="form-control" name="sn" placeholder="订单号" value="SN{:date('Ymdhis',time())}{:rand(10000,99999)}">
+            </div>	
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="field-2" class="control-label">操作员</label>
+                <input type="text" class="form-control" name="author" placeholder="操作员" value="{$my_info->truename}">
+            </div>  
+        </div>
+    </div>
+
+    <div class="row">   
+
+        <div class="col-md-4" style="display:none;">
+            <div class="form-group">
+                <label class="control-label">入库类型</label>
+                <select class="form-control" name="type">
+                    <option value="采购入库" >采购入库</option>
+                    <option value="销售退货" >销售退货</option>
+                </select>  
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group no-margin">
+                <label for="field-7" class="control-label">备注</label>
+                <textarea class="form-control autogrow" name="desc" placeholder="备注" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
+            </div>	
+        </div>
+    </div>
+
+
+</form>
+
+
+
+
+
+
+<script>
+
+    function add_list(obj) {
+        // $(obj).parent().parent().hide();
+        $(obj).parent().parent().clone().appendTo($(obj).parent().parent().parent());
+    }
+
+    function del_list(obj) {
+        $(obj).parent().parent().remove();
+    }
+
+</script>
