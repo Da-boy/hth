@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/hth/app/model/OrderList.php</file>
+            <file>file:/D:/xampp/htdocs/hth/app/view/instorage/lotscreate.html</file>
             <file>file:/D:/xampp/htdocs/hth/app/view/instorage/index.html</file>
             <file>file:/D:/xampp/htdocs/hth/app/controller/Instorage.php</file>
             <file>file:/D:/xampp/htdocs/hth/app/view/instorage/create.html</file>
+            <file>file:/D:/xampp/htdocs/hth/app/view/instorage/prints.html</file>
             <file>file:/D:/xampp/htdocs/hth/app/view/instorage/show.html</file>
             <file>file:/D:/xampp/htdocs/hth/app/service/InstorageService.php</file>
-            <file>file:/D:/xampp/htdocs/hth/app/model/Product.php</file>
         </group>
     </open-files>
 </project-private>

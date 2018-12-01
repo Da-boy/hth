@@ -1,74 +1,83 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2018-12-01 16:13:04
+-- 服务器版本： 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
-Source Server         : mysql
-Source Server Version : 50553
-Source Host           : localhost:3306
-Source Database       : wms
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50553
-File Encoding         : 65001
 
-Date: 2018-01-27 17:09:05
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Database: `wms`
+--
 
--- ----------------------------
--- Table structure for w_category
--- ----------------------------
-DROP TABLE IF EXISTS `w_category`;
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_category`
+--
+
 CREATE TABLE `w_category` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
-  `pid` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `id` mediumint(9) UNSIGNED NOT NULL,
+  `pid` mediumint(9) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(40) NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `desc` mediumtext,
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_category
--- ----------------------------
-INSERT INTO `w_category` VALUES ('1', '0', '数码', '0', '', '1514456685');
-INSERT INTO `w_category` VALUES ('2', '1', '手机', '0', '手机', '1514457825');
-INSERT INTO `w_category` VALUES ('3', '0', '服装', '0', '', '1514554550');
+--
+-- 转存表中的数据 `w_category`
+--
 
--- ----------------------------
--- Table structure for w_company
--- ----------------------------
-DROP TABLE IF EXISTS `w_company`;
+INSERT INTO `w_category` (`id`, `pid`, `name`, `status`, `desc`, `add_time`) VALUES
+(1, 0, '食品', 0, '', 1514456685),
+(2, 0, '酒类', 0, '', 1514457825),
+(3, 0, '礼品', 0, '', 1514554550);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_company`
+--
+
 CREATE TABLE `w_company` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL,
   `tel` varchar(12) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `address` varchar(100) DEFAULT NULL,
   `desc` mediumtext,
-  `add_time` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='公司管理';
+  `add_time` int(11) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司管理';
 
--- ----------------------------
--- Records of w_company
--- ----------------------------
-INSERT INTO `w_company` VALUES ('1', '苏州牧冬光电', '0512-5689105', '30024167@qq.com', '0', '江苏省苏州市园区', '', '1515753231');
-INSERT INTO `w_company` VALUES ('2', '苏州大金空调有限公司', '0512-5689107', '30024167@qq.com', '0', '', '', '1515753528');
-INSERT INTO `w_company` VALUES ('3', '苏州麦克维尔制冷有限公司', '0512-5689107', '81001985@qq.com', '0', '', '', '1515753572');
-INSERT INTO `w_company` VALUES ('4', '三星显示器有限公司', '0512-5689107', '123@qq.com', '0', '方洲路', '', '1515753597');
-INSERT INTO `w_company` VALUES ('5', 'delphi电子', '0532-5689107', '11@qq.com', '0', '江苏省苏州市', '', '1516965310');
+--
+-- 转存表中的数据 `w_company`
+--
 
--- ----------------------------
--- Table structure for w_customer
--- ----------------------------
-DROP TABLE IF EXISTS `w_customer`;
+INSERT INTO `w_company` (`id`, `name`, `tel`, `email`, `status`, `address`, `desc`, `add_time`) VALUES
+(1, '大帝王朝', '110', 'dadi@qq.com', 0, '北京市', '', 1515753231);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_customer`
+--
+
 CREATE TABLE `w_customer` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(8) UNSIGNED NOT NULL,
   `sn` varchar(40) NOT NULL,
   `name` varchar(40) NOT NULL,
   `contact` varchar(20) NOT NULL,
@@ -77,36 +86,37 @@ CREATE TABLE `w_customer` (
   `fax` varchar(20) NOT NULL,
   `address` varchar(40) NOT NULL,
   `desc` mediumtext,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE,
-  UNIQUE KEY `sn` (`sn`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='客户';
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='客户';
 
--- ----------------------------
--- Records of w_customer
--- ----------------------------
-INSERT INTO `w_customer` VALUES ('1', '5a44a4f6f1f18', '苏州牧冬光电有限公司', '测试', '15069900798', '30024167@qq.com', '15069900798', '江苏省苏州市长阳街', '苏州牧冬光电有限公司...', '0', '1514448252');
-INSERT INTO `w_customer` VALUES ('2', '5a44b3f23a31c', '爱美克空气过滤器', '测试', '1705280089', '30024167@qq.com', '0312-56777890', '苏州市工业园区长阳街', '爱美克空气过滤器', '0', '1514452007');
+--
+-- 转存表中的数据 `w_customer`
+--
 
--- ----------------------------
--- Table structure for w_goods
--- ----------------------------
-DROP TABLE IF EXISTS `w_goods`;
+INSERT INTO `w_customer` (`id`, `sn`, `name`, `contact`, `phone`, `email`, `fax`, `address`, `desc`, `status`, `add_time`) VALUES
+(1, '5a44a4f6f1f18', '苏州牧冬光电有限公司', '测试', '15069900798', '30024167@qq.com', '15069900798', '江苏省苏州市长阳街', '苏州牧冬光电有限公司...', 0, 1514448252),
+(2, '5a44b3f23a31c', '爱美克空气过滤器', '测试', '1705280089', '30024167@qq.com', '0312-56777890', '苏州市工业园区长阳街', '爱美克空气过滤器', 0, 1514452007);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_goods`
+--
+
 CREATE TABLE `w_goods` (
-  `goods_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `cat_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `goods_id` mediumint(8) UNSIGNED NOT NULL,
+  `cat_id` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   `ent_id` int(10) NOT NULL DEFAULT '0',
   `goods_sn` varchar(60) NOT NULL DEFAULT '',
   `product_no` varchar(30) DEFAULT '' COMMENT '产品编码',
   `goods_name` varchar(120) NOT NULL DEFAULT '',
   `brand` varchar(64) DEFAULT '' COMMENT '品牌',
   `goods_spec` varchar(255) NOT NULL DEFAULT '',
-  `goods_weight` decimal(10,3) unsigned NOT NULL DEFAULT '0.000',
-  `market_price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `goods_price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `add_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `goods_weight` decimal(10,3) UNSIGNED NOT NULL DEFAULT '0.000',
+  `market_price` decimal(10,2) UNSIGNED NOT NULL DEFAULT '0.00',
+  `goods_price` decimal(10,2) UNSIGNED NOT NULL DEFAULT '0.00',
+  `add_time` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `unit` varchar(15) DEFAULT '' COMMENT '申报单位',
   `goods_sn_cus` varchar(60) DEFAULT NULL COMMENT '海关备案号',
   `goods_sn_ciq` varchar(60) DEFAULT NULL COMMENT '商检备案号',
@@ -121,122 +131,115 @@ CREATE TABLE `w_goods` (
   `unit1` varchar(12) DEFAULT '' COMMENT '法定单位',
   `qty2` decimal(18,5) NOT NULL DEFAULT '0.00000' COMMENT '法定第二数量',
   `unit2` varchar(12) DEFAULT '' COMMENT '法定第二单位',
-  `qty1_ratio` decimal(10,2) unsigned DEFAULT '1.00' COMMENT '第一法定单位对应申报单位的换算系数',
-  `qty2_ratio` decimal(10,2) unsigned DEFAULT '1.00' COMMENT '第二法定单位对应申报单位的换算系数',
-  PRIMARY KEY (`goods_id`)
+  `qty1_ratio` decimal(10,2) UNSIGNED DEFAULT '1.00' COMMENT '第一法定单位对应申报单位的换算系数',
+  `qty2_ratio` decimal(10,2) UNSIGNED DEFAULT '1.00' COMMENT '第二法定单位对应申报单位的换算系数'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_goods
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for w_location
--- ----------------------------
-DROP TABLE IF EXISTS `w_location`;
+--
+-- 表的结构 `w_location`
+--
+
 CREATE TABLE `w_location` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `sn` varchar(40) NOT NULL,
   `name` varchar(40) NOT NULL,
-  `storage` mediumint(5) unsigned NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL COMMENT '0',
+  `storage` mediumint(5) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '0',
   `desc` varchar(200) DEFAULT NULL COMMENT '备注',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='库位管理';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='库位管理';
 
--- ----------------------------
--- Records of w_location
--- ----------------------------
-INSERT INTO `w_location` VALUES ('1', '17122705595244343', 'B区', '1', '0', '', '1514368943');
-INSERT INTO `w_location` VALUES ('2', '17122706022839995', 'A区', '3', '0', '', '1514368959');
+--
+-- 转存表中的数据 `w_location`
+--
 
--- ----------------------------
--- Table structure for w_menu
--- ----------------------------
-DROP TABLE IF EXISTS `w_menu`;
+INSERT INTO `w_location` (`id`, `sn`, `name`, `storage`, `status`, `desc`, `add_time`) VALUES
+(1, '17122705595244343', 'B区', 1, 0, '', 1514368943),
+(2, '17122706022839995', 'A区', 3, 0, '', 1514368959);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_menu`
+--
+
 CREATE TABLE `w_menu` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
-  `pid` mediumint(9) unsigned DEFAULT '0',
+  `id` mediumint(9) UNSIGNED NOT NULL,
+  `pid` mediumint(9) UNSIGNED DEFAULT '0',
   `name` varchar(40) DEFAULT NULL,
   `ico` varchar(20) DEFAULT NULL,
-  `level` tinyint(1) unsigned DEFAULT '0',
+  `level` tinyint(1) UNSIGNED DEFAULT '0',
   `controller` varchar(20) DEFAULT NULL,
   `action` varchar(20) DEFAULT NULL,
-  `status` tinyint(1) unsigned DEFAULT '0',
-  `add_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='菜单';
+  `status` tinyint(1) UNSIGNED DEFAULT '0',
+  `add_time` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='菜单';
 
--- ----------------------------
--- Records of w_menu
--- ----------------------------
-INSERT INTO `w_menu` VALUES ('1', '0', '控制台', 'linecons-cog', '0', 'Index', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('2', '0', '系统设置', 'linecons-desktop', '0', '', null, '0', null);
-INSERT INTO `w_menu` VALUES ('3', '2', '员工管理', null, '1', 'User', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('4', '0', '仓库作业', 'linecons-tag', '0', null, null, '0', null);
-INSERT INTO `w_menu` VALUES ('5', '4', '入库管理', null, '1', 'Instorage', 'index', '0', '5');
-INSERT INTO `w_menu` VALUES ('6', '4', '出库管理', null, '1', 'Outstorage', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('7', '4', '查询管理', null, '1', 'Product', 'lists', '0', null);
-INSERT INTO `w_menu` VALUES ('8', '0', '基本设置', 'linecons-cog', '0', null, null, '0', null);
-INSERT INTO `w_menu` VALUES ('9', '8', '仓库管理', null, '1', 'Storage', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('10', '8', '库位管理', null, '1', 'Location', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('11', '8', '供应商管理', null, '1', 'Supplier', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('12', '8', '客户管理', null, '1', 'Customer', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('13', '8', '计量单位', null, '1', 'Unit', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('14', '8', '产品类别', null, '1', 'Category', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('15', '8', '产品管理', null, '1', 'Product', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('16', '2', '角色管理', null, '1', 'Role', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('17', '8', '企业管理', null, '1', 'Company', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('18', '8', '货架管理', null, '1', 'Shelve', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('19', '8', '货位管理', null, '1', 'Position', 'index', '1', null);
-INSERT INTO `w_menu` VALUES ('20', '0', '订单管理', 'linecons-note', '0', '', null, '0', null);
-INSERT INTO `w_menu` VALUES ('21', '20', '订单查询', null, '1', 'Order', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('22', '20', '订单导入', null, '1', 'Order', 'import', '0', null);
-INSERT INTO `w_menu` VALUES ('23', '4', '货物上架', null, '1', 'Goodtop', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('24', '4', '调度管理', null, '1', 'Allot', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('25', '26', '理货管理', null, '1', 'Pack', 'index', '0', null);
-INSERT INTO `w_menu` VALUES ('26', '0', '发货管理', 'linecons-doc', '0', null, null, '0', null);
-INSERT INTO `w_menu` VALUES ('27', '26', '理货任务', null, '1', 'Pack', 'send', '0', null);
-INSERT INTO `w_menu` VALUES ('28', '20', '拣货管理', null, '1', 'Pack', 'pack', '0', null);
-INSERT INTO `w_menu` VALUES ('29', '20', '理货包装', null, '1', 'Pack', 'arrange', '0', null);
+--
+-- 转存表中的数据 `w_menu`
+--
 
--- ----------------------------
--- Table structure for w_order
--- ----------------------------
-DROP TABLE IF EXISTS `w_order`;
+INSERT INTO `w_menu` (`id`, `pid`, `name`, `ico`, `level`, `controller`, `action`, `status`, `add_time`) VALUES
+(1, 0, '首页', 'linecons-cog', 0, 'Index', 'index', 0, NULL),
+(2, 0, '系统设置', 'linecons-desktop', 0, '', NULL, 0, NULL),
+(3, 2, '员工管理', NULL, 1, 'User', 'index', 0, NULL),
+(4, 0, '仓库作业', 'linecons-tag', 0, NULL, NULL, 0, NULL),
+(5, 4, '入库管理', NULL, 1, 'Instorage', 'index', 0, 5),
+(6, 4, '出库管理', NULL, 1, 'Outstorage', 'index', 0, NULL),
+(7, 4, '查询管理', NULL, 1, 'Product', 'lists', 0, NULL),
+(8, 0, '基本设置', 'linecons-cog', 0, NULL, NULL, 0, NULL),
+(9, 8, '仓库管理', NULL, 1, 'Storage', 'index', 0, NULL),
+(13, 8, '计量单位', NULL, 1, 'Unit', 'index', 0, NULL),
+(15, 8, '产品管理', NULL, 1, 'Product', 'index', 0, NULL),
+(16, 2, '角色管理', NULL, 1, 'Role', 'index', 0, NULL),
+(20, 0, '订单管理', 'linecons-note', 0, '', NULL, 0, NULL),
+(21, 20, '订单查询', NULL, 1, 'Order', 'index', 0, NULL),
+(22, 4, '预出库', NULL, 1, 'Preoutstorage', 'index', 0, NULL),
+(23, 4, '盘点管理', NULL, 1, 'Goodtop', 'index', 0, NULL),
+(24, 4, '盘点记录', NULL, 1, 'Allot', 'index', 0, NULL),
+(25, 4, '出库审批', NULL, 1, 'Appoutstorage', 'index', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_order`
+--
+
 CREATE TABLE `w_order` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `sn` varchar(40) DEFAULT NULL,
-  `car_no` varchar(40) DEFAULT NULL,
-  `ban_no` varchar(40) DEFAULT NULL,
-  `detailed_no` varchar(40) DEFAULT NULL COMMENT '载货清单号',
+  `product_id` varchar(40) DEFAULT NULL COMMENT '相关商品',
+  `unit` varchar(10) DEFAULT '' COMMENT '单位',
   `author` varchar(20) DEFAULT NULL,
-  `supplier` varchar(40) DEFAULT NULL,
-  `state` tinyint(1) unsigned DEFAULT NULL COMMENT '1',
-  `type` varchar(40) DEFAULT NULL,
-  `res` mediumtext,
+  `local` varchar(40) DEFAULT NULL COMMENT '货架',
+  `state` tinyint(1) UNSIGNED DEFAULT NULL COMMENT '1',
   `desc` mediumtext,
-  `add_time` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sn` (`sn`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `add_time` int(11) UNSIGNED DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_order
--- ----------------------------
-INSERT INTO `w_order` VALUES ('1', 'SN2018012110414826907', '', '', '', '布尔', '默认', '1', '采购入库', null, '', '1516545717');
-INSERT INTO `w_order` VALUES ('2', 'SN2018012111214042566', '苏E', '', '', '布尔', '默认', '1', '采购入库', null, '', '1516548122');
-INSERT INTO `w_order` VALUES ('3', 'SN2018012212010089315', '', '', '', '布尔', '默认', '2', '采购出库', null, '', '1516550472');
-INSERT INTO `w_order` VALUES ('4', 'SN2018012212144368051', '', '', '', '布尔', '默认', '2', '采购出库', null, '', '1516551291');
+--
+-- 转存表中的数据 `w_order`
+--
 
--- ----------------------------
--- Table structure for w_order_good
--- ----------------------------
-DROP TABLE IF EXISTS `w_order_good`;
+INSERT INTO `w_order` (`id`, `sn`, `product_id`, `unit`, `author`, `local`, `state`, `desc`, `add_time`) VALUES
+(40, 'SN20181121084735246', NULL, '', '王朝', NULL, 1, '', 1542804483),
+(39, 'SN20181121084643224', NULL, '', '王朝', NULL, 1, '', 1542804446),
+(41, 'SN20181125035915130', NULL, '', '王朝', NULL, 1, '', 1543132772),
+(42, 'SN20181125040008890', NULL, '', '王朝', NULL, 1, '', 1543132813),
+(43, 'SN20181126094011164', NULL, '11', '王朝', '11', 1, '', 1543239632),
+(44, 'SN20181127070033797', NULL, '2222', '王朝', '2222', 1, '', 1543316471),
+(45, 'SN20181127071915607', NULL, '6', '王朝', '66', 1, '', 1543317580);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_order_good`
+--
+
 CREATE TABLE `w_order_good` (
-  `rec_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `rec_id` mediumint(8) UNSIGNED NOT NULL,
   `order_sn` varchar(40) DEFAULT NULL,
   `batch_no` varchar(20) DEFAULT NULL COMMENT '导入批号',
   `referer` varchar(40) DEFAULT NULL COMMENT '订单来源',
@@ -253,39 +256,42 @@ CREATE TABLE `w_order_good` (
   `sender_name` varchar(20) DEFAULT NULL COMMENT '发件人',
   `sender_phone` varchar(12) DEFAULT NULL COMMENT '发件电话',
   `sender_address` mediumtext COMMENT '发件地址',
-  `is_print` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否打印：0：未打印 1：已打印',
-  `pick_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '拣货状态0：未拣货 1：拣货',
-  `tally_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '理货状态0：未理货 1：挂起 2：理货完成',
+  `is_print` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否打印：0：未打印 1：已打印',
+  `pick_status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '拣货状态0：未拣货 1：拣货',
+  `tally_status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '理货状态0：未理货 1：挂起 2：理货完成',
   `out_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '出库状态0：未出库1：已出库',
-  `shipping_fee` decimal(4,2) unsigned DEFAULT '0.00' COMMENT '运费',
+  `shipping_fee` decimal(4,2) UNSIGNED DEFAULT '0.00' COMMENT '运费',
   `desc` mediumtext,
-  `add_time` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`rec_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `add_time` int(11) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_order_good
--- ----------------------------
-INSERT INTO `w_order_good` VALUES ('1', 'AD888013016NY', '20180122092551', '导入', '11010119971218402X', '', '9977937396691', '第三方物流', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', '0', '1', '0', '0', '0.00', null, '1516627551');
-INSERT INTO `w_order_good` VALUES ('2', 'AD888013017NY', '20180122092642', '导入', '51012519820402002X', '', '9977937396692', '第三方物流', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', 'BOBO', '312bay ridge ave brooklyn NY', '0', '1', '0', '0', '0.00', null, '1516627602');
-INSERT INTO `w_order_good` VALUES ('3', 'AD888013018NY', '20180122092652', '导入', '51012519820402002X', '布尔', '9977937396693', '第三方物流', '布尔', '13799983275', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', 'BOBO', 'ge ave brooklyn NY', '0', '0', '0', '0', '0.00', null, '0');
+--
+-- 转存表中的数据 `w_order_good`
+--
 
--- ----------------------------
--- Table structure for w_order_goods
--- ----------------------------
-DROP TABLE IF EXISTS `w_order_goods`;
+INSERT INTO `w_order_good` (`rec_id`, `order_sn`, `batch_no`, `referer`, `identify_no`, `author`, `waybillno`, `delivery`, `receiver_name`, `receiver_phone`, `receiver_province`, `receiver_city`, `receiver_district`, `receiver_address`, `sender_name`, `sender_phone`, `sender_address`, `is_print`, `pick_status`, `tally_status`, `out_status`, `shipping_fee`, `desc`, `add_time`) VALUES
+(1, 'AD888013016NY', '20180122092551', '导入', '11010119971218402X', '', '9977937396691', '第三方物流', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', 0, 1, 0, 0, '0.00', NULL, 1516627551),
+(2, 'AD888013017NY', '20180122092642', '导入', '51012519820402002X', '', '9977937396692', '第三方物流', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', 'BOBO', '312bay ridge ave brooklyn NY', 0, 1, 0, 0, '0.00', NULL, 1516627602),
+(3, 'AD888013018NY', '20180122092652', '导入', '51012519820402002X', '布尔', '9977937396693', '第三方物流', '布尔', '13799983275', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', 'BOBO', 'ge ave brooklyn NY', 0, 0, 0, 0, '0.00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_order_goods`
+--
+
 CREATE TABLE `w_order_goods` (
-  `rec_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `rec_id` mediumint(8) UNSIGNED NOT NULL,
   `order_sn` varchar(40) DEFAULT NULL,
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `goods_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
+  `goods_id` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   `goods_sn` varchar(60) NOT NULL DEFAULT '' COMMENT '商品货号',
   `goods_name` varchar(128) DEFAULT '' COMMENT '品名',
   `brand` varchar(64) DEFAULT '' COMMENT '品牌',
   `goods_spec` varchar(128) DEFAULT '' COMMENT '规格',
   `currency` varchar(50) DEFAULT '' COMMENT '币值',
   `product_no` varchar(50) DEFAULT '' COMMENT '产品编码',
-  `goods_number` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `goods_number` smallint(5) UNSIGNED NOT NULL DEFAULT '1',
   `market_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `goods_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `tax_price` float(10,2) NOT NULL DEFAULT '0.00',
@@ -296,24 +302,18 @@ CREATE TABLE `w_order_goods` (
   `r_weight` decimal(18,5) DEFAULT NULL COMMENT '净重',
   `qty1` decimal(18,5) DEFAULT '0.00000' COMMENT '法定数量',
   `unit1` varchar(12) DEFAULT '' COMMENT '法定单位',
-  `qty2` decimal(18,5) DEFAULT '0.00000' COMMENT '法定第二数量',
-  PRIMARY KEY (`rec_id`),
-  KEY `order_id` (`order_id`) USING BTREE,
-  KEY `goods_id` (`goods_id`) USING BTREE,
-  KEY `goods_sn` (`goods_sn`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `qty2` decimal(18,5) DEFAULT '0.00000' COMMENT '法定第二数量'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_order_goods
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for w_order_info
--- ----------------------------
-DROP TABLE IF EXISTS `w_order_info`;
+--
+-- 表的结构 `w_order_info`
+--
+
 CREATE TABLE `w_order_info` (
-  `order_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `o_id` mediumint(9) unsigned DEFAULT NULL COMMENT '关联id',
+  `order_id` mediumint(8) UNSIGNED NOT NULL,
+  `o_id` mediumint(9) UNSIGNED DEFAULT NULL COMMENT '关联id',
   `ent_id` int(11) DEFAULT '0' COMMENT '所属企业ID',
   `batch_no` varchar(64) DEFAULT NULL COMMENT '导入批次号',
   `order_sn` varchar(64) DEFAULT '' COMMENT '电商内部订单号',
@@ -332,7 +332,7 @@ CREATE TABLE `w_order_info` (
   `sender_address` varchar(255) DEFAULT '' COMMENT '发件人地址',
   `g_weight` decimal(18,5) DEFAULT NULL COMMENT '毛重',
   `r_weight` decimal(18,5) DEFAULT NULL COMMENT '净重',
-  `goods_number` smallint(5) unsigned DEFAULT '1',
+  `goods_number` smallint(5) UNSIGNED DEFAULT '1',
   `goods_amount` decimal(10,2) DEFAULT '0.00',
   `currency` varchar(50) DEFAULT '' COMMENT '币值',
   `shipping_fee` decimal(10,2) DEFAULT '0.00' COMMENT '运费',
@@ -341,289 +341,578 @@ CREATE TABLE `w_order_info` (
   `pick_status` varchar(1) NOT NULL DEFAULT '0' COMMENT '拣货状态0：未拣货 1：拣货',
   `tally_status` varchar(1) NOT NULL DEFAULT '0' COMMENT '理货状态0：未理货 1：挂起 2：理货完成',
   `out_status` varchar(1) NOT NULL DEFAULT '0' COMMENT '出库状态0：未出库1：已出库',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `order_sn` (`order_sn`) USING BTREE,
-  KEY `waybillno` (`waybillno`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='发货';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='发货';
 
--- ----------------------------
--- Records of w_order_info
--- ----------------------------
-INSERT INTO `w_order_info` VALUES ('1', '1', '0', '20180122093010', 'AD888013016NY', null, '9977937396691', '5a450753a97ee', '11010119971218402X', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '2.10000', '4', '200.00', '50', '0.00', null, '0', '0', '0', '0', '1516627810');
-INSERT INTO `w_order_info` VALUES ('2', '2', '0', '20180122093010', 'AD888013017NY', null, '9977937396692', '5a450753a97ee', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '5.30000', '6', '439.80', '73.3', '0.00', null, '0', '0', '0', '0', '1516627810');
-INSERT INTO `w_order_info` VALUES ('3', '2', '0', '20180122093010', 'AD888013017NY', null, '9977937396692', '5a450753a97ee', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '2.10000', '4', '200.00', '50', '0.00', null, '0', '0', '0', '0', '1516627810');
-INSERT INTO `w_order_info` VALUES ('4', '1', '0', '20180122094305', 'AD888013016NY', null, '9977937396691', '5a47110d39206', '11010119971218402X', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '2.10000', '4', '200.00', '50', '0.00', null, '0', '0', '0', '0', '1516628585');
-INSERT INTO `w_order_info` VALUES ('5', '2', '0', '20180122094305', 'AD888013017NY', null, '9977937396692', '5a47110d39206', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '5.30000', '6', '439.80', '73.3', '0.00', null, '0', '0', '0', '0', '1516628585');
-INSERT INTO `w_order_info` VALUES ('6', '2', '0', '20180122094305', 'AD888013017NY', null, '9977937396692', '5a47110d39206', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', null, '2.10000', '4', '200.00', '50', '0.00', null, '0', '0', '0', '0', '1516628585');
+--
+-- 转存表中的数据 `w_order_info`
+--
 
--- ----------------------------
--- Table structure for w_order_infow
--- ----------------------------
-DROP TABLE IF EXISTS `w_order_infow`;
+INSERT INTO `w_order_info` (`order_id`, `o_id`, `ent_id`, `batch_no`, `order_sn`, `referer`, `waybillno`, `product_no`, `identify_no`, `receiver_name`, `receiver_phone`, `receiver_province`, `receiver_city`, `receiver_district`, `receiver_address`, `sender_name`, `sender_phone`, `sender_address`, `g_weight`, `r_weight`, `goods_number`, `goods_amount`, `currency`, `shipping_fee`, `remark`, `is_print`, `pick_status`, `tally_status`, `out_status`, `add_time`) VALUES
+(1, 1, 0, '20180122093010', 'AD888013016NY', NULL, '9977937396691', '5a450753a97ee', '11010119971218402X', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '2.10000', 4, '200.00', '50', '0.00', NULL, '0', '0', '0', '0', 1516627810),
+(2, 2, 0, '20180122093010', 'AD888013017NY', NULL, '9977937396692', '5a450753a97ee', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '5.30000', 6, '439.80', '73.3', '0.00', NULL, '0', '0', '0', '0', 1516627810),
+(3, 2, 0, '20180122093010', 'AD888013017NY', NULL, '9977937396692', '5a450753a97ee', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '2.10000', 4, '200.00', '50', '0.00', NULL, '0', '0', '0', '0', 1516627810),
+(4, 1, 0, '20180122094305', 'AD888013016NY', NULL, '9977937396691', '5a47110d39206', '11010119971218402X', '刘如忆', '13705009875', '福建省', '福州市', '鼓楼区', '东泰路竹林镜新村27号401', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '2.10000', 4, '200.00', '50', '0.00', NULL, '0', '0', '0', '0', 1516628585),
+(5, 2, 0, '20180122094305', 'AD888013017NY', NULL, '9977937396692', '5a47110d39206', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '5.30000', 6, '439.80', '73.3', '0.00', NULL, '0', '0', '0', '0', 1516628585),
+(6, 2, 0, '20180122094305', 'AD888013017NY', NULL, '9977937396692', '5a47110d39206', '51012519820402002X', '陈莉', '13799983277', '福建省', '福州市', '台江区', '洋中路178号文景苑514', 'BOBO', '9294347911', '312bay ridge ave brooklyn NY', NULL, '2.10000', 4, '200.00', '50', '0.00', NULL, '0', '0', '0', '0', 1516628585);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_order_infow`
+--
+
 CREATE TABLE `w_order_infow` (
-  `order_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `o_id` mediumint(9) unsigned DEFAULT NULL COMMENT '关联id',
+  `order_id` mediumint(8) UNSIGNED NOT NULL,
+  `o_id` mediumint(9) UNSIGNED DEFAULT NULL COMMENT '关联id',
   `ent_id` int(11) DEFAULT '0' COMMENT '所属企业ID',
   `product_no` varchar(40) DEFAULT NULL,
   `g_weight` decimal(18,5) DEFAULT NULL COMMENT '毛重',
   `r_weight` decimal(18,5) DEFAULT NULL COMMENT '净重',
-  `goods_number` smallint(5) unsigned DEFAULT '1',
+  `goods_number` smallint(5) UNSIGNED DEFAULT '1',
   `goods_amount` decimal(10,2) DEFAULT '0.00',
   `currency` varchar(50) DEFAULT '' COMMENT '币值',
   `remark` varchar(255) DEFAULT '' COMMENT '订单备注',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='发货';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='发货';
 
--- ----------------------------
--- Records of w_order_infow
--- ----------------------------
-INSERT INTO `w_order_infow` VALUES ('1', '1', '0', '5a450753a97ee', null, '2.10000', '4', '200.00', '50', null, '1516627602');
-INSERT INTO `w_order_infow` VALUES ('2', '2', '0', '5a450753a97ee', null, '5.30000', '6', '439.80', '73.3', null, '1516627602');
-INSERT INTO `w_order_infow` VALUES ('3', '2', '0', '5a450753a97ee', null, '2.10000', '4', '200.00', '50', null, '1516627602');
+--
+-- 转存表中的数据 `w_order_infow`
+--
 
--- ----------------------------
--- Table structure for w_order_list
--- ----------------------------
-DROP TABLE IF EXISTS `w_order_list`;
+INSERT INTO `w_order_infow` (`order_id`, `o_id`, `ent_id`, `product_no`, `g_weight`, `r_weight`, `goods_number`, `goods_amount`, `currency`, `remark`, `add_time`) VALUES
+(1, 1, 0, '5a450753a97ee', NULL, '2.10000', 4, '200.00', '50', NULL, 1516627602),
+(2, 2, 0, '5a450753a97ee', NULL, '5.30000', 6, '439.80', '73.3', NULL, 1516627602),
+(3, 2, 0, '5a450753a97ee', NULL, '2.10000', 4, '200.00', '50', NULL, 1516627602);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_order_list`
+--
+
 CREATE TABLE `w_order_list` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
-  `good_id` mediumint(9) unsigned DEFAULT NULL COMMENT '关联商品id',
-  `order_id` mediumint(9) unsigned DEFAULT NULL COMMENT '入库订单id',
-  `num` mediumint(9) unsigned DEFAULT NULL COMMENT '入库数量',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='订单关联表';
+  `id` mediumint(9) UNSIGNED NOT NULL,
+  `good_id` mediumint(9) UNSIGNED DEFAULT NULL COMMENT '关联商品id',
+  `order_id` mediumint(9) UNSIGNED DEFAULT NULL COMMENT '入库订单id',
+  `num` mediumint(9) UNSIGNED DEFAULT NULL COMMENT '入库数量'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订单关联表';
 
--- ----------------------------
--- Records of w_order_list
--- ----------------------------
-INSERT INTO `w_order_list` VALUES ('1', '1', '1', '1');
-INSERT INTO `w_order_list` VALUES ('2', '3', '1', '10');
-INSERT INTO `w_order_list` VALUES ('3', '6', '2', '1');
-INSERT INTO `w_order_list` VALUES ('4', '5', '2', '10');
-INSERT INTO `w_order_list` VALUES ('5', '4', '3', '1');
-INSERT INTO `w_order_list` VALUES ('6', '3', '3', '10');
-INSERT INTO `w_order_list` VALUES ('7', '6', '2', '5');
+--
+-- 转存表中的数据 `w_order_list`
+--
 
--- ----------------------------
--- Table structure for w_product
--- ----------------------------
-DROP TABLE IF EXISTS `w_product`;
+INSERT INTO `w_order_list` (`id`, `good_id`, `order_id`, `num`) VALUES
+(1, 1, 1, 1),
+(2, 3, 1, 10),
+(3, 6, 2, 1),
+(4, 5, 2, 10),
+(5, 4, 3, 1),
+(6, 3, 3, 10),
+(7, 6, 2, 5),
+(8, 3, 5, 12),
+(9, 5, 5, 12),
+(10, 4, 6, 9),
+(11, 4, 7, 9),
+(12, 6, 7, 9),
+(13, 3, 8, 3),
+(14, 4, 9, 1),
+(15, 1, 10, 10),
+(16, 2, 10, 10),
+(17, 10, 11, 21),
+(18, 2, 13, 12),
+(19, 1, 15, 8),
+(20, 13, 16, 20),
+(21, 13, 17, 10),
+(22, 2, 18, 10),
+(23, 13, 18, 2),
+(24, 1, 19, 9),
+(25, 15, 20, 20),
+(26, 2, 21, 20),
+(27, 15, 21, 10),
+(28, 12, 22, 8),
+(29, 1, 23, 6),
+(30, 1, 24, 4),
+(31, 1, 25, 4),
+(32, 1, 26, 45),
+(33, 1, 27, 2),
+(34, 1, 28, 2),
+(35, 1, 29, 3),
+(36, 1, 32, 9),
+(37, 1, 34, 1),
+(38, 1, 35, 1),
+(39, 1, 36, 1),
+(40, 1, 37, 22),
+(41, 13, 37, 11),
+(42, 1, 38, 2),
+(43, 12, 38, 7),
+(44, 1, 39, 100),
+(45, 1, 40, 123),
+(46, 1, 43, 11),
+(47, 1, 44, 22),
+(48, 10, 44, 2222),
+(49, 1, 45, 6),
+(50, 11, 45, 6),
+(51, 1, 46, 4);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_product`
+--
+
 CREATE TABLE `w_product` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `sn` varchar(40) NOT NULL,
   `name` varchar(20) NOT NULL,
-  `nbsn` varchar(40) DEFAULT NULL,
-  `cjsn` varchar(40) DEFAULT NULL,
   `category` varchar(20) DEFAULT NULL,
   `storage` varchar(20) DEFAULT NULL,
   `location` varchar(20) DEFAULT NULL,
   `unit` varchar(20) DEFAULT NULL,
-  `supplier` varchar(40) DEFAULT NULL,
-  `customer` varchar(40) DEFAULT NULL,
+  `keeptime` int(40) DEFAULT NULL COMMENT '保质日期',
+  `sctime` date DEFAULT NULL COMMENT '生产日期',
   `shelve` mediumint(9) DEFAULT NULL,
   `spec` varchar(40) DEFAULT NULL COMMENT '规格',
-  `price` decimal(10,2) unsigned DEFAULT NULL,
-  `num` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '数量',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `price` decimal(10,2) UNSIGNED DEFAULT NULL,
+  `num` mediumint(9) UNSIGNED NOT NULL DEFAULT '0' COMMENT '数量',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `desc` mediumtext,
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='产品';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='产品';
 
--- ----------------------------
--- Records of w_product
--- ----------------------------
-INSERT INTO `w_product` VALUES ('1', '5a450753a97ee', '鞋子', '', '5a450753a97ee', '数码', '华中地区', 'A区', '双', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '5.00', '120', '0', '111', '1514473336');
-INSERT INTO `w_product` VALUES ('2', '5a45c671401ec', '产品1', '', '5a45c671401ec', '手机', '西北仓库', 'A区', '箱', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '10.00', '11', '0', '', '1514522247');
-INSERT INTO `w_product` VALUES ('3', '5a4644bcb7ec1', '服装', '', '5a4644bcb7ec1', '服装', '华东仓库', 'B区', '箱', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '50.00', '17', '0', '', '1514554572');
-INSERT INTO `w_product` VALUES ('4', '5a470f4c59ebd', '荣耀V10', '', '5a470f4c59ebd', '手机', '华东仓库', 'B区', '个', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '1999.00', '9', '0', '', '1514606441');
-INSERT INTO `w_product` VALUES ('5', '5a47110d39206', '金立s10', '', '5a47110d39206', '手机', '西南地区', 'B区', '个', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '2555.00', '15', '0', '', '1514606883');
-INSERT INTO `w_product` VALUES ('6', '5a4711ce77e24', '小米6', '', '5a4711ce77e24', '手机', '华中地区', 'B区', '个', '苏州牧冬光电有限公司', '爱美克空气过滤器', null, '', '2499.00', '0', '0', '', '1514607078');
-INSERT INTO `w_product` VALUES ('7', '5a5e0dfa45122', 'bool', '', '5a5e0dfa45122', '手机', '华东仓库', 'A区', '箱', '苏州牧冬光电有限公司', '苏州牧冬光电有限公司', null, 'www', '5.00', '0', '0', '', '1516113498');
-INSERT INTO `w_product` VALUES ('8', '5a5e0e928b118', '111', '', '5a5e0e928b118', '数码', '华东仓库', 'B区', '箱', '苏州牧冬光电有限公司', '苏州牧冬光电有限公司', null, '', '50.00', '0', '0', '', '1516113559');
-INSERT INTO `w_product` VALUES ('9', '5a5e0e928b118', 'buer ', '', '5a5e0e928b118', '数码', '华东仓库', 'B区', '箱', '苏州牧冬光电有限公司', '苏州牧冬光电有限公司', null, '11', '111.00', '0', '0', '', '1516113596');
+--
+-- 转存表中的数据 `w_product`
+--
 
--- ----------------------------
--- Table structure for w_productup
--- ----------------------------
-DROP TABLE IF EXISTS `w_productup`;
+INSERT INTO `w_product` (`id`, `sn`, `name`, `category`, `storage`, `location`, `unit`, `keeptime`, `sctime`, `shelve`, `spec`, `price`, `num`, `status`, `desc`, `add_time`) VALUES
+(1, '5a450753a97ee', '华夫饼', '0', '1号食品仓库', 'A区', '箱', 0, '0000-00-00', NULL, '500g/包*6包/箱', '99.00', 498, 0, '111', 1514473336),
+(16, '5bfe10bc19d5d', '可乐', NULL, '一号货架', NULL, '箱', 300, '2018-09-01', NULL, '200ml/瓶', '200.00', 0, 0, '', 1543377119),
+(10, '5bd130036cdfa', '茅台', '0', '1号食品仓库', 'B区', '箱', 0, '0000-00-00', NULL, '500ML/瓶*6瓶/箱', '100.00', 2222, 0, '', 1540435998),
+(11, '5bd1305bb9ca5', '恰恰瓜子', '数码', '1号食品仓库', 'B区', '包', 0, '0000-00-00', NULL, '500g/包', '12.00', 6, 0, '', 1540436109);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_productup`
+--
+
 CREATE TABLE `w_productup` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `gid` mediumint(9) DEFAULT NULL,
   `storage` varchar(20) DEFAULT NULL,
   `location` varchar(20) DEFAULT NULL,
   `shelve` mediumint(9) DEFAULT NULL,
   `shelve_list` varchar(20) DEFAULT NULL,
-  `num` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `num` mediumint(9) UNSIGNED NOT NULL DEFAULT '0',
   `desc` mediumtext,
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='产品';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='产品';
 
--- ----------------------------
--- Records of w_productup
--- ----------------------------
-INSERT INTO `w_productup` VALUES ('1', '1', '华中地区', 'A区', '1', '2', '15', '111', '1514473336');
-INSERT INTO `w_productup` VALUES ('2', '2', '西北仓库', 'A区', '2', '1', '5', '', '1514522247');
-INSERT INTO `w_productup` VALUES ('7', '7', '华东仓库', 'B区', '2', '1', '0', '', '1516113596');
-INSERT INTO `w_productup` VALUES ('3', '3', '华东仓库', 'B区', '1', '1', '1', null, '0');
-INSERT INTO `w_productup` VALUES ('4', '4', '华东仓库', 'B区', '1', '1', '1', null, '0');
-INSERT INTO `w_productup` VALUES ('5', '5', '西南地区', 'B区', '1', '1', '10', null, '0');
-INSERT INTO `w_productup` VALUES ('6', '6', '华中地区', 'B区', '1', '1', '2', null, '0');
-INSERT INTO `w_productup` VALUES ('8', '8', null, null, null, null, '0', null, '0');
-INSERT INTO `w_productup` VALUES ('9', '9', null, null, null, null, '0', null, '0');
+--
+-- 转存表中的数据 `w_productup`
+--
 
--- ----------------------------
--- Table structure for w_role
--- ----------------------------
-DROP TABLE IF EXISTS `w_role`;
+INSERT INTO `w_productup` (`id`, `gid`, `storage`, `location`, `shelve`, `shelve_list`, `num`, `desc`, `add_time`) VALUES
+(1, 1, '华中地区', 'A区', 1, '2', 15, '111', 1514473336),
+(15, 16, '一号货架', NULL, NULL, NULL, 0, '', 1543377119),
+(10, 10, '酒水仓库', 'B区', NULL, NULL, 0, '', 1540435998),
+(11, 11, '1号食品仓库', 'B区', NULL, NULL, 0, '', 1540436109);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_role`
+--
+
 CREATE TABLE `w_role` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL,
   `ids` mediumtext,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `desc` mediumtext,
-  `add_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `add_time` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_role
--- ----------------------------
-INSERT INTO `w_role` VALUES ('1', '系统管理员', '1,2,3,16', '0', '1111111111111', '1515743511');
-INSERT INTO `w_role` VALUES ('2', '仓库管理', '4,5,6,7', '0', '11111111', '1515743749');
+--
+-- 转存表中的数据 `w_role`
+--
 
--- ----------------------------
--- Table structure for w_shelve
--- ----------------------------
-DROP TABLE IF EXISTS `w_shelve`;
+INSERT INTO `w_role` (`id`, `name`, `ids`, `status`, `desc`, `add_time`) VALUES
+(1, '系统管理员', '1,2,3,16', 0, '1111111111111', 1515743511),
+(2, '仓库管理员', '1,2,3,4,5,6,7,22,23,24,25,8,15', 0, '', 1515743749),
+(3, '审核员', '1,4,5,6,7,23,24,8,9', 0, '', 1540384258),
+(4, '经办人', '1,4,6,7', 0, '', 1540384281),
+(5, '会计', '1,4,7,24', 0, '', 1540384301),
+(6, '经理', '1,2,3,16', 0, '', 1540384949);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_shelve`
+--
+
 CREATE TABLE `w_shelve` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `sn` varchar(40) NOT NULL,
   `name` varchar(40) NOT NULL,
-  `location` mediumint(5) unsigned NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL COMMENT '0',
+  `location` mediumint(5) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '0',
   `list` mediumtext,
   `desc` varchar(200) DEFAULT NULL COMMENT '备注',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='货架管理';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='货架管理';
 
--- ----------------------------
--- Records of w_shelve
--- ----------------------------
-INSERT INTO `w_shelve` VALUES ('1', '17122705595244343', 'A1', '2', '0', '1,2,3,4,5', '111', '1514368943');
-INSERT INTO `w_shelve` VALUES ('2', '17122706022839995', 'A2', '2', '0', '1,2,3,4,5', '', '1514368959');
-INSERT INTO `w_shelve` VALUES ('3', '18011302055978362', 'B1', '2', '0', '1,2,3,4,5', '', '1515823705');
+--
+-- 转存表中的数据 `w_shelve`
+--
 
--- ----------------------------
--- Table structure for w_storage
--- ----------------------------
-DROP TABLE IF EXISTS `w_storage`;
+INSERT INTO `w_shelve` (`id`, `sn`, `name`, `location`, `status`, `list`, `desc`, `add_time`) VALUES
+(1, '17122705595244343', 'A1', 2, 0, '1,2,3,4,5', '111', 1514368943),
+(2, '17122706022839995', 'A2', 2, 0, '1,2,3,4,5', '', 1514368959),
+(3, '18011302055978362', 'B1', 2, 0, '1,2,3,4,5', '', 1515823705);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_storage`
+--
+
 CREATE TABLE `w_storage` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `sn` varchar(40) NOT NULL COMMENT '编号',
   `name` varchar(40) NOT NULL COMMENT '名字',
   `contact` varchar(16) NOT NULL,
   `phone` varchar(12) NOT NULL,
   `desc` mediumtext,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态： 0正常 1禁用',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态： 0正常 1禁用',
   `address` varchar(40) DEFAULT NULL,
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `sn` (`sn`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='仓库管理';
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='仓库管理';
 
--- ----------------------------
--- Records of w_storage
--- ----------------------------
-INSERT INTO `w_storage` VALUES ('1', 'SN2017122704154711343', '华东仓库', '布尔', '17052850083', '华东仓库', '0', '江苏省苏州市', '1514349093');
-INSERT INTO `w_storage` VALUES ('2', 'SN2017122704160191249', '华北仓库', '测试', '15052850085', '华北仓库', '0', '山东省青岛市城阳区', '1514350644');
-INSERT INTO `w_storage` VALUES ('3', 'SN2017122704163071894', '华南仓库', '阿德民', '18101565682', '华南仓库', '0', '广东省广州市天河区车陂', '1514351327');
-INSERT INTO `w_storage` VALUES ('4', 'SN2017122704163675950', '东北仓库', '马云', '15069900798', '东北仓库', '0', '黑龙江省哈尔滨市', '1514351479');
-INSERT INTO `w_storage` VALUES ('5', 'SN2017122704165667035', '西北仓库', '秦始皇', '17052850085', '西北仓库', '0', '陕西省西安市大雁区', '1514351552');
-INSERT INTO `w_storage` VALUES ('6', 'SN2017122704171789530', '华中地区', '无名', '17052850083', '华中地区', '0', '湖北省武汉市汉口区', '1514351653');
-INSERT INTO `w_storage` VALUES ('7', 'SN2017122704172619176', '西南地区', '张杰', '17052850086', '西南地区', '0', '四川省成都市', '1514351716');
+--
+-- 转存表中的数据 `w_storage`
+--
 
--- ----------------------------
--- Table structure for w_supplier
--- ----------------------------
-DROP TABLE IF EXISTS `w_supplier`;
-CREATE TABLE `w_supplier` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `sn` varchar(40) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  `contact` varchar(20) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `fax` varchar(20) NOT NULL,
-  `address` varchar(40) NOT NULL,
-  `desc` mediumtext,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE,
-  UNIQUE KEY `sn` (`sn`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='供应商';
+INSERT INTO `w_storage` (`id`, `sn`, `name`, `contact`, `phone`, `desc`, `status`, `address`, `add_time`) VALUES
+(1, 'SN2017122704160191249', '1号食品仓库', '王朝', '15052850085', '', 0, '北京市丰台区', 1514350644),
+(5, 'SN2018102510471694441', '杂支仓库', '李四', '18922626666', '', 0, '北京市海淀区', 1540435662),
+(6, 'SN2018102510481867715', '礼品仓库', '王五', '17688888888', '', 0, '北京市海淀区', 1540435722),
+(2, 'SN2017122704171789530', '2号食品仓库', '贾志强', '17052850083', '', 0, '北京市朝阳区', 1514351653),
+(4, 'SN2018102510435222920', '酒水仓库', '张三', '15322890753', '', 0, '北京市海淀区', 1540435474),
+(3, 'SN2018102510394958542', '3号食品仓库', '李鑫克', '14567897622', '', 0, '北京市海淀区', 1540435229);
 
--- ----------------------------
--- Records of w_supplier
--- ----------------------------
-INSERT INTO `w_supplier` VALUES ('1', '5a44a4f6f1f18', '苏州牧冬光电有限公司', '测试', '15069900798', '30024167@qq.com', '15069900798', '江苏省苏州市长阳街', '苏州牧冬光电有限公司...', '0', '1514448252');
-INSERT INTO `w_supplier` VALUES ('2', '5a6b0dcb2d8b2', '精端显示器', '布尔', '151015656875', '333@qq.com', '151015656875', '江苏省苏州市', '', '0', '1516965378');
-INSERT INTO `w_supplier` VALUES ('3', '5a6b0e0a2eaad', '伟创力电子', 'bool', '111', '11@qq.com', '11', '江苏省苏州市', '', '0', '1516965414');
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for w_unit
--- ----------------------------
-DROP TABLE IF EXISTS `w_unit`;
+--
+-- 表的结构 `w_unit`
+--
+
 CREATE TABLE `w_unit` (
-  `id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `desc` mediumtext,
-  `add_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `add_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of w_unit
--- ----------------------------
-INSERT INTO `w_unit` VALUES ('1', '箱', '0', '箱', '1514454975');
-INSERT INTO `w_unit` VALUES ('2', '个', '0', '', '1514455204');
-INSERT INTO `w_unit` VALUES ('3', '包', '0', '', '1514455226');
-INSERT INTO `w_unit` VALUES ('4', '片', '0', '', '1514455232');
-INSERT INTO `w_unit` VALUES ('5', '双', '0', '', '1516544029');
+--
+-- 转存表中的数据 `w_unit`
+--
 
--- ----------------------------
--- Table structure for w_user
--- ----------------------------
-DROP TABLE IF EXISTS `w_user`;
+INSERT INTO `w_unit` (`id`, `name`, `status`, `desc`, `add_time`) VALUES
+(1, '箱', 0, '箱', 1514454975),
+(2, '个', 0, '', 1514455204),
+(3, '包', 0, '', 1514455226),
+(4, '片', 0, '', 1514455232),
+(5, '双', 0, '', 1516544029);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `w_user`
+--
+
 CREATE TABLE `w_user` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `id` mediumint(9) NOT NULL,
   `sn` mediumtext,
   `username` varchar(16) NOT NULL COMMENT '用户名',
   `password` varchar(32) NOT NULL COMMENT '密码',
   `phone` varchar(12) DEFAULT NULL COMMENT '手机号',
   `eamil` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `truename` varchar(16) DEFAULT NULL,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0:正常 1:禁用',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态 0:正常 1:禁用',
   `desc` mediumtext,
-  `add_time` int(11) unsigned DEFAULT NULL,
-  `role` mediumint(10) unsigned DEFAULT NULL,
-  `company` mediumint(10) unsigned DEFAULT NULL COMMENT '公司',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
+  `add_time` int(11) UNSIGNED DEFAULT NULL,
+  `role` mediumint(10) UNSIGNED DEFAULT NULL,
+  `company` mediumint(10) UNSIGNED DEFAULT NULL COMMENT '公司'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
 
--- ----------------------------
--- Records of w_user
--- ----------------------------
-INSERT INTO `w_user` VALUES ('1', '18011401143519201', 'bool', '21232f297a57a5a743894a0e4a801fc3', '17052850083', '30024167', '布尔', '0', null, '1515908045', '1', '1');
-INSERT INTO `w_user` VALUES ('2', '18011401143519202', 'admin', '21232f297a57a5a743894a0e4a801fc3', '17052850083', '30024167', '管理员', '0', null, '1515908045', '1', '2');
-INSERT INTO `w_user` VALUES ('3', '18011401143519203', 'admin1', '21232f297a57a5a743894a0e4a801fc3', '17052850083', '30024167', '布尔1111', '0', '', '1515908045', '2', '2');
+--
+-- 转存表中的数据 `w_user`
+--
+
+INSERT INTO `w_user` (`id`, `sn`, `username`, `password`, `phone`, `eamil`, `truename`, `status`, `desc`, `add_time`, `role`, `company`) VALUES
+(1, '18011401143519201', 'bool', '21232f297a57a5a743894a0e4a801fc3', '17052850083', '30024167', '王朝', 0, NULL, 1515908045, 1, 1),
+(6, '18102408342579092', 'chenyb', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, '程玉彬', 0, '', 1540384506, 3, 1),
+(5, '18102408321211484', 'lixk', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, '李鑫克', 0, '', 1540384360, 2, 1),
+(7, '18102408362139562', 'jiazq', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, '贾志强', 0, '', 1540384608, 4, 1),
+(8, '18102408365153154', 'zhangkj', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, '张会计', 0, '', 1540384647, 5, 1),
+(9, '18102408423877832', 'guocq', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, '郭经理', 0, '', 1540384981, 6, 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `w_category`
+--
+ALTER TABLE `w_category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `w_company`
+--
+ALTER TABLE `w_company`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`) USING BTREE;
+
+--
+-- Indexes for table `w_customer`
+--
+ALTER TABLE `w_customer`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`) USING BTREE,
+  ADD UNIQUE KEY `sn` (`sn`) USING BTREE;
+
+--
+-- Indexes for table `w_goods`
+--
+ALTER TABLE `w_goods`
+  ADD PRIMARY KEY (`goods_id`);
+
+--
+-- Indexes for table `w_location`
+--
+ALTER TABLE `w_location`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `w_menu`
+--
+ALTER TABLE `w_menu`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `w_order`
+--
+ALTER TABLE `w_order`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sn` (`sn`),
+  ADD KEY `product_id` (`product_id`) USING BTREE;
+
+--
+-- Indexes for table `w_order_good`
+--
+ALTER TABLE `w_order_good`
+  ADD PRIMARY KEY (`rec_id`);
+
+--
+-- Indexes for table `w_order_goods`
+--
+ALTER TABLE `w_order_goods`
+  ADD PRIMARY KEY (`rec_id`),
+  ADD KEY `order_id` (`order_id`) USING BTREE,
+  ADD KEY `goods_id` (`goods_id`) USING BTREE,
+  ADD KEY `goods_sn` (`goods_sn`) USING BTREE;
+
+--
+-- Indexes for table `w_order_info`
+--
+ALTER TABLE `w_order_info`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `order_sn` (`order_sn`) USING BTREE,
+  ADD KEY `waybillno` (`waybillno`) USING BTREE;
+
+--
+-- Indexes for table `w_order_infow`
+--
+ALTER TABLE `w_order_infow`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `w_order_list`
+--
+ALTER TABLE `w_order_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `w_product`
+--
+ALTER TABLE `w_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `w_productup`
+--
+ALTER TABLE `w_productup`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `w_role`
+--
+ALTER TABLE `w_role`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`) USING BTREE;
+
+--
+-- Indexes for table `w_shelve`
+--
+ALTER TABLE `w_shelve`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `w_storage`
+--
+ALTER TABLE `w_storage`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `sn` (`sn`);
+
+--
+-- Indexes for table `w_unit`
+--
+ALTER TABLE `w_unit`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`) USING BTREE;
+
+--
+-- Indexes for table `w_user`
+--
+ALTER TABLE `w_user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `w_category`
+--
+ALTER TABLE `w_category`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用表AUTO_INCREMENT `w_company`
+--
+ALTER TABLE `w_company`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 使用表AUTO_INCREMENT `w_customer`
+--
+ALTER TABLE `w_customer`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用表AUTO_INCREMENT `w_goods`
+--
+ALTER TABLE `w_goods`
+  MODIFY `goods_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用表AUTO_INCREMENT `w_location`
+--
+ALTER TABLE `w_location`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用表AUTO_INCREMENT `w_menu`
+--
+ALTER TABLE `w_menu`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- 使用表AUTO_INCREMENT `w_order`
+--
+ALTER TABLE `w_order`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- 使用表AUTO_INCREMENT `w_order_good`
+--
+ALTER TABLE `w_order_good`
+  MODIFY `rec_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用表AUTO_INCREMENT `w_order_goods`
+--
+ALTER TABLE `w_order_goods`
+  MODIFY `rec_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用表AUTO_INCREMENT `w_order_info`
+--
+ALTER TABLE `w_order_info`
+  MODIFY `order_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用表AUTO_INCREMENT `w_order_infow`
+--
+ALTER TABLE `w_order_infow`
+  MODIFY `order_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用表AUTO_INCREMENT `w_order_list`
+--
+ALTER TABLE `w_order_list`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- 使用表AUTO_INCREMENT `w_product`
+--
+ALTER TABLE `w_product`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- 使用表AUTO_INCREMENT `w_productup`
+--
+ALTER TABLE `w_productup`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- 使用表AUTO_INCREMENT `w_role`
+--
+ALTER TABLE `w_role`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用表AUTO_INCREMENT `w_shelve`
+--
+ALTER TABLE `w_shelve`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用表AUTO_INCREMENT `w_storage`
+--
+ALTER TABLE `w_storage`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- 使用表AUTO_INCREMENT `w_unit`
+--
+ALTER TABLE `w_unit`
+  MODIFY `id` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 使用表AUTO_INCREMENT `w_user`
+--
+ALTER TABLE `w_user`
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

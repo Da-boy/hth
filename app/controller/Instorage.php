@@ -19,11 +19,13 @@ class Instorage extends Base
         return view();
     }
 
-    public function create($id)
+    public function create()
     {
 
-//            'product'    =>  Product::all(  [ 'status' => 0 ] ),        
-             $product1     =  Product::get($id);
+        $this->assign([
+            'product'    =>  Product::all(  [ 'status' => 0 ] ),
+            'product1'    =>  Product::all(  [ 'status' => 0 ] ),
+        ]);
         return view();
     }
     
@@ -58,7 +60,6 @@ class Instorage extends Base
         $this->assign(['info'  =>  $this->service->edit($id)]);   
         return view();
     }
-
     public function update(){
         return $this->service->update();
     }
@@ -80,6 +81,10 @@ class Instorage extends Base
         include ROOT_PATH.'/extend/Barcode.php';
         die( \Barcode::code39($sn) );  
     }
+//    public function fromIDgetSpec($id) {
+//        
+//        
+//    }
 
 
 }

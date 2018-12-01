@@ -83,7 +83,7 @@
                     <!-- searach -->
                     <div class="btn-toolbar">
 
-                        <form class="form-inline" style="margin-bottom:15px;" class="search-tool">
+                        <form class="form-inline search-tool" style="margin-bottom:15px;" >
                             <span>
                                 <label class="control-label">制单者</label>   
                                 <input type="text" class="form-control" placeholder="制单者" name="author" value="{$Request.get.author}"> 
@@ -93,21 +93,6 @@
                                 <label class="control-label">出库编号</label>      
                                 <input type="text" class="form-control" placeholder="出库编号" name="sn" value="{$Request.get.sn}">
                             </span>
-
-<!--                            <span style="margin-left: 15px;">
-                                <label class="control-label">出库类型</label>
-                                <select class="form-control" name="type">
-                                    <option value="" 
-                                        {eq name="Request.get.type" value=" "} selected="selected" {/eq}
-                                    >全部类型</option>
-                                    <option value="采购出库" 
-                                        {eq name="Request.get.type" value="采购出库"} selected="selected" {/eq}
-                                    >采购出库</option>
-                                    <option value="销售退货" 
-                                        {eq name="Request.get.type" value="销售退货"} selected="selected" {/eq}
-                                    >销售退货</option>
-                                </select>   
-                            </span>-->
 
                             <span style="margin-left: 15px;">
                                 <button class="btn btn-default btn-primary" type="submit" style="margin-top:10px;">
@@ -174,8 +159,6 @@
                                 </th>
                                 <th>编号</th>
                                 <th>制单者</th>
-<!--                                <th>供应商</th>-->
-<!--                                <th>出库类型</th>-->
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -190,15 +173,9 @@
                                 </td>
                                 <td> {$vo.sn} </td>
                                 <td> {$vo.author} </td>
-<!--                                <td> {$vo.supplier} </td>-->
-<!--                                <td> {$vo.type} </td>-->
+
                                 <td> {:date('Y-m-d H:i:s',$vo->add_time)} </td>
                                 <td>
-<!--                                     <a href="javascript:;" 
-                                        class="btn btn-secondary btn-sm btn-icon icon-left" 
-                                        onclick="editAjaxModal('{:url('/Outstorage/edit/id/'.$vo->id)}')" >
-                                        编辑
-                                    </a> -->
 
                                     <a href="{:url('/Outstorage/prints/id/'.$vo->id)}" target="_blank" class="btn btn-secondary btn-sm btn-icon icon-left">
                                         打印

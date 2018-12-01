@@ -2,7 +2,6 @@
 namespace app\controller;
 use app\service\OutstorageService,
     app\model\Product,
-    app\model\Supplier,
     app\model\Order;
 
 class Outstorage extends Base
@@ -24,7 +23,6 @@ class Outstorage extends Base
     {
         $this->assign([
             'product'    =>  Product::all(  [ 'status' => 0 ] ),
-            'supplier'   =>  Supplier::all(  [ 'status' => 0 ] ),
         ]);
         return view();
     }

@@ -36,14 +36,14 @@ class InstorageService {
 
             $order = new Order();
             $order->sn = $param['sn'];
-            $order->keeptime = $param['keeptime'];
-            $order->unit = $param['unit'];
-            $order->desc = $param['desc'];
+//            $order->keeptime = $param['keeptime'];
+//            $order->unit = $param['unit'];
+//            $order->desc = $param['desc'];
             $order->author = $param['author'];
-            $order->price = $param['price'];
-            $order->spec = $param['spec'];
-            $order->sctime = $param['sctime'];
-            $order->local = $param['local'];
+//            $order->price = $param['price'];
+//            $order->spec = $param['spec'];
+//            $order->sctime = $param['sctime'];
+//            $order->local = $param['local'];
             $order->state = 1;
             $order->add_time = time();
 

@@ -16,7 +16,7 @@ class OutstorageService {
         $where = [];
 
         //封装where查询条件
-        empty($data['type']) || $where['type'] = $data['type'];
+//        empty($data['type']) || $where['type'] = $data['type'];
         empty($data['author']) || $where['author'] = ['like', '%' . $data['author']];
         empty($data['sn']) || $where['sn'] = $data['sn'];
 

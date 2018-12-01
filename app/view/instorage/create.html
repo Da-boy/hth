@@ -23,16 +23,16 @@
                 <th class="sorting_disabled" rowspan="1" colspan="1"  style="    width: 140px;">
                     产品名称
                 </th>
-                <th class="sorting_disabled" rowspan="1" colspan="1">
+<!--                <th class="sorting_disabled" rowspan="1" colspan="1">
                     规格
                 </th>
                 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 80px;">
                     单位
-                </th>
+                </th>-->
                 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 80px;">
                     入库数
                 </th>
-                <th class="sorting_disabled" rowspan="1" colspan="1" >
+<!--                <th class="sorting_disabled" rowspan="1" colspan="1" >
                     单价
                 </th>
                 <th class="sorting_disabled" rowspan="1" colspan="1">
@@ -43,37 +43,46 @@
                 </th>
                 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 250px;">
                     库房及货架
-                </th>
+                </th>-->
                 <th style="    width: 60px;"></th>
             </tr>
         </thead>
-        <tbody>
-       
+        <tbody>    
             <tr role="row" class="odd order-list">
-                     {volist name='product1' id='vo'}
+                 
                 <td>
                     <a href="javascript:void(0);" onclick="add_list(this)"> [ + ] </a> 
                 </td>
-                 
+                  
                 <td> 
-                    <select name="product[]" class="form-control">               
+                    <select name="product[]" class="form-control" id="product1">    
+                        {volist name='product'  id='vo'}
                         <option value="{$vo.id}">{$vo.name}</option>   
+                        {/volist}
                     </select> 
+                     
                 </td>
-                <td><input type="text" class="form-control"  name="spec" value="{$vo.spec}"></td>
-                <td><input type="text" class="form-control" name="unit"></td>
-                <td><input type="text" class="form-control" value="" name="num[]"></td>
+                <td><input type="text" class="form-control" value="" name="num[]"></td>    
+<!--                <td>
+                    
+                    <input type="text" class="form-control"  name="spec" value="{$vo.spec}"> 
+                    <input type="hidden" class="form-control"   value="{$vo.id}"> 
+                    {$vo.id}
+                    
+                </td>-->
+<!--                <td><input type="text" class="form-control" name="unit"></td>
+             
                 <td><input type="text" class="form-control" name="price"></td>
                 <td><input type="date" class="form-control" name="sctime"></td>
                 <td><input type="text" class="form-control" name="keeptime"></td>
-                <td><input type="text" class="form-control" name="local"></td>
-                
+                <td><input type="text" class="form-control" name="local"></td>-->
+               
                 <td>
                     <a class="delete" href="javascript:void(0)" onclick="del_list(this)"> [ - ] </a>
                 </td>
-                 {/volist}
+               
             </tr>
-
+         
         </tbody>
     </table>
 
@@ -95,6 +104,8 @@
 
 
 
+
+
 <script>
 
     function add_list(obj) {
@@ -105,5 +116,9 @@
     function del_list(obj) {
         $(obj).parent().parent().remove();
     }
-
+$(function(){
+    $("#product1").change(function(){
+        $(this).val();
+    });
+});
 </script>
